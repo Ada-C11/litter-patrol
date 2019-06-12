@@ -29,22 +29,27 @@ class App extends Component {
       points: 0,
     };
 
-    // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // // Uncomment this to spawn a single test item
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
     console.log(this.state);
+
   }
 
-  onItemClicked = () => {
-    // Fill this in!
-  }
+  // onItemClicked = () => {
+  //   this.setState({
+  //     spotted: 'spotted',
+  //   })
+  // }
+    // Fill this in! 
 
   render() {
     const items = this.state.items.map((item, i) => {
+      const natureOrLitter = item.type === 'litter' ? 'litter' : 'nature'
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
@@ -52,6 +57,7 @@ class App extends Component {
               
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
+               natureOrLitter={natureOrLitter}
              />;
     });
 

@@ -9,12 +9,19 @@ class GameItem extends Component {
     super(props);
     this.state = {
       item: this.props.item,
-      // shouldDisplayName: true,
+      clicked: false,
     };
   }
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+  }
+
+  onItemClick = () => {
+    console.log('Item clicked!');
+    this.setState({
+      clicked: true,
+    })
   }
 
   render() {
@@ -27,8 +34,16 @@ class GameItem extends Component {
     // const icon = ItemIcons.rock;
     const icon = ItemIcons[this.state.item];
 
+    let status = '';
+    if (this.state.clicked) {
+      if (this.state.item === 'litter') {
+        status = 'spotted-litter'
+      } else {
+        status = 'spotted-nature'
+      }
+    }
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${status}`} style={itemStyle} onClick={this.onItemClick}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

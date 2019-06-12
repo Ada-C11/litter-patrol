@@ -8,6 +8,7 @@ class GameItem extends Component {
     super();
     this.state = {
       spottedCorrectly: null,
+      pointAdded: null, // ensures point is only added the first time litter is clicked
     };
   }
   static propTypes = {
@@ -17,8 +18,9 @@ class GameItem extends Component {
 
   onGameItemClicked = () => {
     if (this.props.type === "litter") {
-      this.setState({ spottedCorrectly: true })
-    } else {
+      this.setState({ spottedCorrectly: true, pointAdded: true });
+      this.props.pointScorer();
+    } else if (this.props.type !== "litter") {
       this.setState({ spottedCorrectly: false })
     }
   }

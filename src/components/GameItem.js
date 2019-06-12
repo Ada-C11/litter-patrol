@@ -20,8 +20,17 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.icon];
 
+    let spottedType;
+
+    // console.log(`*********** ${icon}`);
+    if (this.props.icon === "litter") {
+      spottedType = "spotted-litter"
+    } else {
+      spottedType = "spotted-nature"
+    }
+
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${spottedType}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

@@ -4,10 +4,29 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      spottedType: '',
+    };
+  }
   // height and layer must be a number, and they are required
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+  }
+
+  onSpotted = () => {
+
+    const spottedType = (this.props.icon === "litter" ? "spotted-litter" : "spotted-nature");
+
+    this.setState({
+      isSpotted: true,
+      spottedType: spottedType,
+    });
+
+    
   }
 
   render() {
@@ -20,17 +39,8 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.icon];
 
-    let spottedType;
-
-    // console.log(`*********** ${icon}`);
-    if (this.props.icon === "litter") {
-      spottedType = "spotted-litter"
-    } else {
-      spottedType = "spotted-nature"
-    }
-
     return (
-      <div className={`game-item ${spottedType}`} style={itemStyle}>
+      <div onClick={ this.onSpotted } className={`game-item ${ this.state.spottedType }`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

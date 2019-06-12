@@ -4,7 +4,7 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
@@ -19,7 +19,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.itemType];
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className="game-item" style={itemStyle} onClick={this.props.clickEvent}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

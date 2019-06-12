@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    console.log("Item has been clicked!");
+    // console.log("Item has been clicked!");
   }
 
   render() {

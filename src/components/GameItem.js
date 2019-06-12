@@ -4,6 +4,13 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      clickStatus: false
+    }
+  }
+
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
@@ -17,6 +24,8 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.itemType];
+
+    const spottedStatus = 
 
     return (
       <div className="game-item spotted-nature" style={itemStyle} onClick={this.props.clickEvent}>

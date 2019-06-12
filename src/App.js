@@ -37,15 +37,22 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    console.log(this.state.items);
   }
 
   updateScore = (iconType, clickStatus) => {
-    console.log('jumping for joy');
+    let updatedPoints 
+    console.log(this.state.points);
+
     if (iconType === 'litter' && clickStatus === false) {
-      let updatedPoints = this.state.points + 1
-      this.setState({ points: updatedPoints });
+      updatedPoints = this.state.points + 1;
+    } else if (iconType !== 'litter' && clickStatus === false) {
+      updatedPoints = this.state.points - 1;
+    } else {
+      updatedPoints = this.state.points + 0;
     }
+    
+    this.setState({ points: updatedPoints });
   }
 
   render() {
@@ -55,7 +62,6 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
-               score={this.state.points}
                updateScoreCallback={this.updateScore}
              />;
     });

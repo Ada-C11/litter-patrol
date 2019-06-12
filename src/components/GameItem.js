@@ -19,11 +19,21 @@ class GameItem extends Component {
   }
 
   onIconClick = () => {
-    console.log(this.state.itemDisplay);
-    this.props.updateScoreCallback(this.props.type, this.state.alreadyClicked);
+
+    const iconType = this.props.type;
+    const clickStatus = this.state.alreadyClicked;
+
+    // calling callback function passed as a prop
+    this.props.updateScoreCallback(iconType, clickStatus);
+
+    this.setState({
+      alreadyClicked: true
+    });
+
     this.setState({
       itemDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
     });
+
   }
 
   render() {
@@ -37,8 +47,8 @@ class GameItem extends Component {
    
 
     return (
-      <div className={`game-item ${this.state.itemDisplay}`} style={itemStyle}>
-        <img onClick={this.onIconClick} src={icon} alt="Item" className="icon-item"></img>
+      <div onClick={this.onIconClick} className={`game-item ${this.state.itemDisplay}`} style={itemStyle}>
+        <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

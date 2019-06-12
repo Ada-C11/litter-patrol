@@ -42,8 +42,10 @@ class App extends Component {
 
   updateScore = (iconType, clickStatus) => {
     let updatedPoints 
-    console.log(this.state.points);
 
+    // +1 point for clicking on litter
+    // -1 point for clicking on non-litter
+    // 0 points for clicking on anything a second time
     if (iconType === 'litter' && clickStatus === false) {
       updatedPoints = this.state.points + 1;
     } else if (iconType !== 'litter' && clickStatus === false) {

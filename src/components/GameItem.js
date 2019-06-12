@@ -4,9 +4,11 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
+  // typechecking 
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired
   }
 
   render() {
@@ -16,9 +18,11 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const iconCategory = this.props.type
+    const icon = ItemIcons[iconCategory];
 
     return (
+      // THIS IS INLINE STYLING...WHATTTT
       <div className="game-item" style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>

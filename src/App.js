@@ -40,7 +40,11 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    const updatedScore = this.state.points += 1;
+    this.setState({
+      points: updatedScore,
+    });
+    
   }
 
   render() {
@@ -51,6 +55,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                type={item.type}
                // Additional props (event callbacks, etc.) can be passed here
+               updateScoreCallback = {this.onItemClicked}
 
              />;
     });

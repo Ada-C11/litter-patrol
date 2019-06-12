@@ -8,6 +8,7 @@ class GameItem extends Component {
     super(props);
     this.state = {
       isSpotted:false,
+      itemScore: 0,
     };
   }
   
@@ -20,6 +21,10 @@ class GameItem extends Component {
     this.setState({
       isSpotted: true,
     });
+    if (this.props.type === 'litter') {
+      this.props.updateScoreCallback();
+    }
+    
   }
 
   render() {

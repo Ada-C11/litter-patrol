@@ -21,20 +21,26 @@ class App extends Component {
     itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
 
+  // ** When we override the implicit constructor with our own, we NEED super
   constructor() {
+    // ** Right now this is the same as the implicit default constructor we inherit from Component
     super();
 
+    // ** Data that will fluctuate while running the app
     this.state = {
       items: [],
       points: 0,
     };
 
+
+    // ** Creates an instance of a spawn item
+    // ** Pushes testItem into items array (defined above) inside this.state
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    this.enableSpawner();
+    // this.enableSpawner();
 
     console.log(this.state);
   }
@@ -44,6 +50,9 @@ class App extends Component {
   }
 
   render() {
+
+    // ** Mapping the items array from the constructor, into another array
+    // that's populated with GameItem components, with are then rendered
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
@@ -54,6 +63,7 @@ class App extends Component {
              />;
     });
 
+    // Score, logo, etc
     return (
       <div className="game">
         <section className="hud">

@@ -7,13 +7,18 @@ class GameItem extends Component {
   constructor() {
     super();
     this.state = {
-      clickStatus: false
-    }
+      clickStatus: false,
+    };
   }
 
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+  }
+
+  onClickSpottedStatus = () => {
+    console.log("Wahoo!!");
+    this.setState({ clickStatus: true });
   }
 
   render() {
@@ -25,10 +30,10 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.itemType];
 
-    const spottedStatus = 
+    const spottedStatus = this.state.clickStatus ? "spotted-litter" : "spotted-nature";
 
     return (
-      <div className="game-item spotted-nature" style={itemStyle} onClick={this.props.clickEvent}>
+      <div className={`game-item ${spottedStatus}`} style={itemStyle} onClick={this.onClickSpottedStatus}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

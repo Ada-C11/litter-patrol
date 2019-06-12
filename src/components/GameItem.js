@@ -4,20 +4,22 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  constuctor(props) {
+  constructor(props) {
+    super(props);
     this.state = {
       spottedItem: false
-    }
+    };
   }
 
   spottedItem = () => {
+    this.setState({
+      spottedItem: !this.state.spottedItem
+    });
 
+    console.log('spotted item!')
+    
   }
-  
-  propTypes = {
-    height: PropTypes.number.isRequired,
-    layer: PropTypes.number.isRequired,
-  }
+
 
   render() {
     const itemStyle = {
@@ -30,10 +32,15 @@ class GameItem extends Component {
 
     return (
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img onClick={ this.spottedItem }src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }
+}
+
+GameItem.propTypes = {
+  height: PropTypes.number.isRequired,
+  layer: PropTypes.number.isRequired,
 }
 
 export default GameItem;

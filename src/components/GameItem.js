@@ -19,6 +19,7 @@ class GameItem extends Component {
 
   onIconClick = () => {
     console.log(this.state.itemDisplay);
+    this.props.updateScoreCallback(this.props.type);
     this.setState({
       itemDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
     });

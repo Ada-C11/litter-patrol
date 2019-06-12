@@ -40,10 +40,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  updateScore = (iconType) => {
+  updateScore = (iconType, clickStatus) => {
     console.log('jumping for joy');
-    if (iconType === 'litter') {
-      this.state.points += 1;
+    if (iconType === 'litter' && clickStatus === false) {
+      let updatedPoints = this.state.points + 1
+      this.setState({ points: updatedPoints });
     }
   }
 
@@ -109,7 +110,6 @@ class App extends Component {
         ];
       }
     }
-
     return newState;
   }
 

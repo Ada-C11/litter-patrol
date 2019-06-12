@@ -8,6 +8,7 @@ class GameItem extends Component {
     super(props);
     this.state = {
       itemDisplay: 'none',
+      alreadyClicked: false,
     }
   }
   // why does this need to be static?
@@ -19,7 +20,7 @@ class GameItem extends Component {
 
   onIconClick = () => {
     console.log(this.state.itemDisplay);
-    this.props.updateScoreCallback(this.props.type);
+    this.props.updateScoreCallback(this.props.type, this.state.alreadyClicked);
     this.setState({
       itemDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
     });

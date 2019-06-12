@@ -17,7 +17,7 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClick = () => {
+  onGameItemClick = () => {
     console.log('Item clicked!');
     if (!this.state.clicked && this.state.item === 'litter') this.props.incrementScoreFunc();
     this.setState({
@@ -37,14 +37,15 @@ class GameItem extends Component {
 
     let status = '';
     if (this.state.clicked) {
-      if (this.state.item === 'litter') {
-        status = 'spotted-litter'
-      } else {
-        status = 'spotted-nature'
-      }
+      status = (this.state.item === 'litter') ? 'spotted-litter' : 'spotted-nature';
+      // if (this.state.item === 'litter') {
+      //   status = 'spotted-litter'
+      // } else {
+      //   status = 'spotted-nature'
+      // }
     }
     return (
-      <div className={`game-item ${status}`} style={itemStyle} onClick={this.onItemClick}>
+      <div className={`game-item ${status}`} style={itemStyle} onClick={this.onGameItemClick}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

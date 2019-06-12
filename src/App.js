@@ -53,7 +53,7 @@ class App extends Component {
         key={item.id}            // Key - to help React with performance
 
         incrementScoreFunc={this.onItemClicked}
-        item={this.randomType()}
+        item={item.type}
       // Additional props (event callbacks, etc.) can be passed here
       />;
     });

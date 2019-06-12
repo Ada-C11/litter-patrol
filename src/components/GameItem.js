@@ -22,9 +22,12 @@ class GameItem extends Component {
   }
 
   render() {
-    let classToUse = "spotted-nature"
-    if (this.state.clicked === true && this.props.type == "litter") {
+    let classToUse = ""
+    if (this.state.clicked === true && this.props.type === "litter") {
       classToUse = "spotted-litter";
+    }
+    if (this.state.clicked === true && this.props.type !== "litter") {
+      classToUse = "spotted-nature";
     }
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -37,8 +40,8 @@ class GameItem extends Component {
 
     return (
       // <div onClick={ this.changeClickStatus } className={classToUse}>
-      <div className="game-item" style={itemStyle} onClick={ this.changeClickStatus } >
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={`game-item ${classToUse}`} style={itemStyle} onClick={ this.changeClickStatus } >
+        <img src={icon} alt= "Item" className="icon-item"></img>
       </div>
       // </div>
     );

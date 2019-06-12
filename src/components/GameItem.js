@@ -3,9 +3,10 @@ import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
+
 class GameItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       clickStatus: false,
     };
@@ -19,6 +20,7 @@ class GameItem extends Component {
   onClickSpottedStatus = () => {
     console.log("Wahoo!!");
     this.setState({ clickStatus: true });
+    console.log(this.props.itemType);
   }
 
   render() {
@@ -30,10 +32,18 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.itemType];
 
-    const spottedStatus = this.state.clickStatus ? "spotted-litter" : "spotted-nature";
+    let classInformation = "game-item";
+    
+    if (this.state.clickStatus === true && this.props.itemType === "litter") {
+        classInformation = "game-item spotted-litter"
+      } else if (this.state.clickStatus === true && this.props.itemType !== "litter"){
+        classInformation = "game-item spotted-nature"
+      }
+
+    // const spottedStatus = this.state.clickStatus ? "spotted-litter" : "spotted-nature";
 
     return (
-      <div className={`game-item ${spottedStatus}`} style={itemStyle} onClick={this.onClickSpottedStatus}>
+      <div className={classInformation} style={itemStyle} onClick={this.onClickSpottedStatus}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

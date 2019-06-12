@@ -4,6 +4,22 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLitter: this.props.itemType === 'litter',
+      cssSpottedClass: '',
+    };
+  }
+
+  onItemClick = () => {
+    this.setState({
+      cssSpottedClass: this.state.isLitter
+        ? 'spotted-litter'
+        : 'spotted-nature',
+    });
+  };
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -15,7 +31,11 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.itemType];
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div
+        className={'game-item ' + this.state.cssSpottedClass}
+        style={itemStyle}
+        onClick={this.onItemClick}
+      >
         <img src={icon} alt="Item" className="icon-item" />
       </div>
     );

@@ -9,6 +9,22 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      addClickCss: ""
+    }
+  }
+  
+  onNatureItemClick = () => {
+    this.setState(
+      {
+        addClickCss: this.props.iconName === "litter" ?
+          "spotted-litter" : "spotted-nature"
+      })
+    this.props.onItemClicked(this.props.iconName)()
+    }
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -19,8 +35,8 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.iconName];
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={`game-item ${this.state.addClickCss}`} onClick={this.onNatureItemClick} style={itemStyle}>
+        <img src={icon}  alt="Item" className="icon-item"></img>
       </div>
     );
   }

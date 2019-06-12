@@ -8,16 +8,21 @@ class GameItem extends Component {
     super(props);
     this.state = {
       isLitter: this.props.itemType === 'litter',
-      cssSpottedClass: '',
+      cssSpottedClass: null,
+      spotted: false,
     };
   }
 
   onItemClick = () => {
-    this.setState({
-      cssSpottedClass: this.state.isLitter
-        ? 'spotted-litter'
-        : 'spotted-nature',
-    });
+    if (!this.state.spotted) {
+      this.setState({
+        cssSpottedClass: this.state.isLitter ? 'litter' : 'nature',
+        spotted: !this.state.spotted,
+      });
+      if (this.state.isLitter) {
+        this.props.pointTracker();
+      }
+    }
   };
 
   render() {
@@ -32,7 +37,7 @@ class GameItem extends Component {
 
     return (
       <div
-        className={'game-item ' + this.state.cssSpottedClass}
+        className={'game-item spotted-' + this.state.cssSpottedClass}
         style={itemStyle}
         onClick={this.onItemClick}
       >

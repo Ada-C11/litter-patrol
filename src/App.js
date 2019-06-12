@@ -30,8 +30,8 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();

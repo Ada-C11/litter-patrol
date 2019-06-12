@@ -40,11 +40,13 @@ class App extends Component {
 
   }
 
-  // onItemClicked = () => {
-  //   this.setState({
-  //     spotted: 'spotted',
-  //   })
-  // }
+  onItemClicked = (addPoints) => {
+    const newPoints = this.state.points + addPoints
+    this.setState({
+      points: newPoints
+    })
+    console.log(this.state.points)
+  }
     // Fill this in! 
 
   render() {
@@ -58,6 +60,7 @@ class App extends Component {
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
                natureOrLitter={natureOrLitter}
+               addPoints={this.onItemClicked}
              />;
     });
 

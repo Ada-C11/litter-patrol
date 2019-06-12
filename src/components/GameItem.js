@@ -16,10 +16,13 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
   
-  onItemClicked = () => {
+  onClick = () => {
     this.setState({
       spotted: 'spotted',
     })
+    if ((this.state.spotted === 'unspotted') && (this.props.natureOrLitter === 'litter')) {
+      this.props.addPoints(1);
+    }
   }
 
   render() {
@@ -32,7 +35,7 @@ class GameItem extends Component {
 
       return (
       <div className={`game-item ${this.state.spotted}-${this.props.natureOrLitter}`} style={itemStyle}>
-        <img  onClick={this.onItemClicked} src={icon} alt="Item" className="icon-item"></img>
+        <img  onClick={this.onClick} src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

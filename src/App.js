@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
+import ItemIcons from './ItemIcons';
 
 class App extends Component {
   config = {
@@ -45,10 +46,12 @@ class App extends Component {
 
   render() {
     const items = this.state.items.map((item, i) => {
+      // `console.log(item.type)
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
+               type={item.type}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;

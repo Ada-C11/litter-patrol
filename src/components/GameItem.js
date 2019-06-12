@@ -8,7 +8,6 @@ class GameItem extends Component {
     super(props);
     this.state = {
       isSpotted:false,
-      itemScore: 0,
     };
   }
   

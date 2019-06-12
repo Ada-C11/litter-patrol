@@ -47,7 +47,6 @@ class App extends Component {
     })
     console.log(this.state.points)
   }
-    // Fill this in! 
 
   render() {
     const items = this.state.items.map((item, i) => {

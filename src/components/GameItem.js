@@ -4,10 +4,24 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      itemDisplay: 'none',
+    }
+  }
+  // why does this need to be static?
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
+  }
+
+  onIconClick = () => {
+    console.log(this.state.itemDisplay);
+    this.setState({
+      itemDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
+    });
   }
 
   render() {
@@ -21,8 +35,8 @@ class GameItem extends Component {
    
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={`game-item ${this.state.itemDisplay}`} style={itemStyle}>
+        <img onClick={this.onIconClick} src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

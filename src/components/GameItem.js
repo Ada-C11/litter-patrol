@@ -19,6 +19,7 @@ class GameItem extends Component {
 
   onItemClick = () => {
     console.log('Item clicked!');
+    if (!this.state.clicked && this.state.item === 'litter') this.props.incrementScoreFunc();
     this.setState({
       clicked: true,
     })

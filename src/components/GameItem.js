@@ -3,6 +3,7 @@ import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
+//wave 2
 class GameItem extends Component {
   propTypes = {
     height: PropTypes.number.isRequired,
@@ -13,10 +14,12 @@ class GameItem extends Component {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
+      
     };
 
+    //wave 1
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
 
     return (
       <div className="game-item" style={itemStyle}>

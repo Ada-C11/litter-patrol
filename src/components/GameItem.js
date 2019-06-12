@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
-import ItemIcons from '../ItemIcons.js';
+import ItemIcons from '../ItemIcons.js'; // This is bringing in the images in the web app
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
@@ -16,7 +16,14 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    // const icon = ItemIcons.rock; 
+    // const b = this.props.type
+    // const itemImage = {
+    //   type: this.props.type,
+    // }
+
+    const icon = ItemIcons[this.props.type]; 
+    console.log(icon);
 
     return (
       <div className="game-item" style={itemStyle}>

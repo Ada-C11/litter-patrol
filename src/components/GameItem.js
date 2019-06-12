@@ -8,7 +8,7 @@ class GameItem extends Component {
     super(props);
   }
   
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }

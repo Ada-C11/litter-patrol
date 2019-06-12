@@ -4,14 +4,35 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
+  constructor(props){
+    super(props);
+    this.state = ({
+      className: 'game-item',
+      itemType: this.props.eachItem
+    });
+  }
   propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
 
+  //Helper Function
+  markItem = (event) => {
+
+    console.log(event.target);
+    console.log(this.state.itemType);
+
+    if (this.state.itemType === "litter"){
+      this.setState({
+        className: 'game-item spotted-litter'
+        
+      } )
+    } else {
+      this.setState({
+        className: 'game-item spotted-nature'
+      })
+    }
+  }
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -23,8 +44,10 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.eachItem]
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={this.state.className} style={itemStyle}>
+        
+        <img src={icon} alt="Item" className="icon-item" onClick={this.markItem}></img>
+       
       </div>
     );
   }

@@ -39,8 +39,17 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (icon) => {
+   
+
+    // if (event.target.value === "litter") {
+    //   this.setState = {
+
+    //   }
+    //   console.log("clicked a litter!!")
+    // } else {
+    //   console.log("clicked a non - litter!!")
+    // }
   }
 
   render() {

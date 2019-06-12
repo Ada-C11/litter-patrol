@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    console.log('Item clicked!');
   }
 
   render() {
@@ -50,11 +50,12 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}          //added this line 
+               itemClicked={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
-
+    
     return (
       <div className="game">
         <section className="hud">
@@ -65,6 +66,7 @@ class App extends Component {
         <section className="level">
           { this.levelBackground() }
           { items }
+    
         </section>
 
       </div>

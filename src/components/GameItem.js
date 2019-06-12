@@ -16,8 +16,9 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
 
+    let icon = ItemIcons[this.props.type];
+    
     return (
       <div className="game-item" style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>

@@ -11,7 +11,7 @@ class GameItem extends Component {
     };
   }
   
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }

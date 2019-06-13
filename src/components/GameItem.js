@@ -4,10 +4,23 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      spot: false
+    };
+  }
   propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
+
+  spot = () => {
+    this.setState({
+      spot: !this.state.spot,
+    });
+  }
+
 
   render() {
     const itemStyle = {
@@ -21,7 +34,7 @@ class GameItem extends Component {
       
     return (
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.spot}></img>
       </div>
     );
   }

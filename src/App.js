@@ -40,11 +40,10 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    this.setState({ points: 1});
+    this.setState({ points: 1 });
   };
 
   render() {
-
     const items = this.state.items.map((item, i) => {
       return (
         <GameItem

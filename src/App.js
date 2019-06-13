@@ -39,25 +39,15 @@ class App extends Component {
     // console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // console.log(icon)
-    // console.log(this.state.items)
-
-    // if the clicked on element is a litter
-    // add className of spotted-litter
-    // else add className of spotted-nature
-
-    // if (icon.includes('litter')) {
-    //   console.log(`I'm a litter!!!`)
-    // }
-
-    // if (event.target === 'litter') {
-    //   console.log('clicked a litter!!')
-    // } else {
-    //   console.log('clicked a non-litter!!')
-    // }
+  onItemClicked = (itemType) => {
+    if (itemType === 'litter') {
+      let addPoints = this.state.points
+      this.setState ({points: addPoints + 1})
+    }
   }
   
+
+
   render() {
     const items = this.state.items.map((item, i) => {
       // console.log(item.type)
@@ -67,6 +57,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                
                testingItems={item.type}
+               markScoreCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

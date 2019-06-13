@@ -12,6 +12,11 @@ class GameItem extends Component {
   })
 }
   
+  // markScoreonClick = () => {
+  //   console.log('inside markScore in GameItem')
+  //   // sent to app callback function 
+  // }
+  
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
@@ -34,6 +39,9 @@ class GameItem extends Component {
         className: 'game-item spotted-nature'
       })
     }
+
+    // callbackfunction 
+    this.props.markScoreCallback(this.state.testingItems)
   }
 
   render() {

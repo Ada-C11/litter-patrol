@@ -7,6 +7,7 @@ class GameItem extends Component {
   propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    icon: PropTypes.string.isRequired
   }
 
   render() {

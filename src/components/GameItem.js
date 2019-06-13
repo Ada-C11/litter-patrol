@@ -12,20 +12,12 @@ class GameItem extends Component {
   })
 }
   
-  // markScoreonClick = () => {
-  //   console.log('inside markScore in GameItem')
-  //   // sent to app callback function 
-  // }
-  
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
 
-  // helper function
   markItem = () => {
-    // console.log(event.target);
-    // console.log(this.state.itemType);
 
     if (this.state.testingItems === "litter"){
       console.log(`spotted litter! ${this.state.testingItems}`)
@@ -40,7 +32,6 @@ class GameItem extends Component {
       })
     }
 
-    // callbackfunction 
     this.props.markScoreCallback(this.state.testingItems)
   }
 

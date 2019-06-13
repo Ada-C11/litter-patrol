@@ -36,11 +36,18 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    console.log(this.state.items);
   }
 
   onItemClicked = () => {
     console.log("This will update the score!");
+
+    // if (this.target.value === "litter") {
+      this.setState(prevState => {
+        return {points: prevState.points + 1}
+      })
+    // }
+    // this.setState({ points: true });
   }
 
   render() {

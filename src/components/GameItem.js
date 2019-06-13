@@ -11,28 +11,29 @@ class GameItem extends Component {
       itemType: this.props.eachItem
     });
   }
-  propTypes = {
-    height: PropTypes.number.isRequired,
-    layer: PropTypes.number.isRequired,
-  }
+  // propTypes = {
+  //   height: PropTypes.number.isRequired,
+  //   layer: PropTypes.number.isRequired,
+  // }
 
-  //Helper Function
-  markItem = (event) => {
-
-    console.log(event.target);
-    console.log(this.state.itemType);
+  markItem = () => {
+    // console.log(event.target);
+    // console.log(this.state.itemType);
 
     if (this.state.itemType === "litter"){
       this.setState({
         className: 'game-item spotted-litter'
-        
-      } )
+      })
+      this.props.onItemClickedCallback();
     } else {
       this.setState({
         className: 'game-item spotted-nature'
       })
+      // this.props.onItemClickedCallback();
     }
   }
+
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen

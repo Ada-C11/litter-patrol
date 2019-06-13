@@ -41,9 +41,7 @@ class App extends Component {
 
   onItemClicked = (type) => {
     if (type === 'litter') {
-      this.setState({
-        points: this.state.points + 1
-      })
+      this.setState({ points: this.state.points + 1 });
     }
   }
 

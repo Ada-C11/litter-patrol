@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 class GameItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      spotted: false,
-    };
+    this.state = { spotted: false };
   }
   
   static propTypes = {
@@ -18,9 +16,7 @@ class GameItem extends Component {
 
   onItemClick = () => {
     if (!this.state.spotted) {
-      this.setState({
-        spotted: true,
-      })
+      this.setState({ spotted: true });
       this.props.onItemClicked(this.props.type);
     }
   }
@@ -38,7 +34,7 @@ class GameItem extends Component {
     let gameItemStyle = "game-item"
     if (this.state.spotted) {
       const litterOrNature = (this.props.type === 'litter') ?  'litter' : 'nature';
-      gameItemStyle += ` spotted-${litterOrNature}`
+      gameItemStyle += ` spotted-${litterOrNature}`;
     };
 
     return (

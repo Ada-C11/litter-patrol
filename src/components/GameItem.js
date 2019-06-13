@@ -15,13 +15,19 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-
+    // select the correct icon for each item
     const icon = ItemIcons[this.props.type];
 
-    return (
+    // **** check type and set class to give feedback on if it should've been clicked ****
+    let checkOrX;
+    const changeClickRegister = () => {
+      console.log('changeClickRegister was triggered');
+      checkOrX = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature'
+  }
+
+    return (  // **** ADD AN EVENT LISTENER ****
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img src={icon} alt="Item" className={`icon-item ${checkOrX}`} onClick={changeClickRegister}></img>
       </div>
     );
   }

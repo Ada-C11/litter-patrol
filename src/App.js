@@ -34,23 +34,28 @@ class App extends Component {
     this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    // this.enableSpawner();
+    this.enableSpawner();
 
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (type) => {
+
+    if (type === "litter") {
+      this.setState((prevState) => ({
+        points: prevState.points + 1
+      }));
+    }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id} 
-               type={item.type}           // Key - to help React with performance
-
+              height={item.height}     // Height - used for a CSS style to position on the screen
+              layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+              key={item.id} 
+              type={item.type}           // Key - to help React with performance
+              onItemClick={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
@@ -61,7 +66,6 @@ class App extends Component {
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
-
         <section className="level">
           { this.levelBackground() }
           { items }

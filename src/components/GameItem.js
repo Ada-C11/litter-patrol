@@ -4,30 +4,47 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
-    height: PropTypes.number.isRequired,
-    layer: PropTypes.number.isRequired,
+  constructor() {
+    super()
+    this.state = {
+      spottedItem: "",
+    };
   }
 
-  // onItemClick = () => {
-  //   let spottedItem = ``
-  // if (this.props.type === "litter") {
-  //   spottedItem = "spotted-litter"
-  // } else {
-  //   spottedItem = "spotted-nature"
-  // }
-  // }
+  static propTypes = {
+    height: PropTypes.number.isRequired,
+    layer: PropTypes.number.isRequired,
+    onItemClick: PropTypes.func,
+  }
+
+  onClick = () => {
+    // let spottedItem = ``
+    // console.log(this.state.spottedItem)
+    if (this.props.type === "litter") {
+      this.setState({
+        spottedItem: "spotted-litter"
+      });
+    } else {
+      this.setState({
+        spottedItem: "spotted-nature"
+      });
+    }
+    
+    if (this.props.onItemClick) {
+      this.props.onItemClick(this.props.type);
+    }
+  }
 
   render() {
-    let spottedItem = ""
-    const onItemClick = () => {
-    if (this.props.type === "litter") {
-      spottedItem = "spotted-litter"
-    } else {
-      spottedItem = "spotted-nature"
-    }
-    }
-
+    // let spottedItem = ""
+    // const onItemClick = () => {
+    // if (this.props.type === "litter") {
+    //   spottedItem = "spotted-litter"
+    // } else {
+    //   spottedItem = "spotted-nature"
+    // }
+    // }
+    let spotItem = this.state.spottedItem
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
@@ -37,7 +54,11 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className="game-item {spottedItem}" style={itemStyle} onClick={ this.onItemClick }>
+      <div
+        className={`game-item ${spotItem}`}
+        style={itemStyle}
+        onClick={this.onClick}
+      >
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

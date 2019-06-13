@@ -45,14 +45,15 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = (itemIndex) => {
+  onItemClicked = (icon) => {
     // Fill this in!
-    console.log(itemIndex);
+    console.log(icon);
 
     // Store our state in a local variable so we can make the update
     let updatedPoints = this.state.points;
     updatedPoints += 1;
 
+    // Call setState to update our state (and auto re-render)
     this.setState({points: updatedPoints});
   }
 
@@ -62,7 +63,6 @@ class App extends Component {
     // that's populated with GameItem components, with are then rendered
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               index = {i}
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance

@@ -21,7 +21,7 @@ class GameItem extends Component {
 
     const spottedType = (this.props.icon === "litter" ? "spotted-litter" : "spotted-nature");
     
-    this.props.onItemClickedCallback(this.props.index);
+    this.props.onItemClickedCallback(this.props.icon);
 
     this.setState({
       isSpotted: true,

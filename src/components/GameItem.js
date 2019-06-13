@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 class GameItem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      spotted: false,
+    };
   }
   
   static propTypes = {
@@ -13,6 +16,14 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  onItemClick = () => {
+    if (!this.state.spotted) {
+      this.setState({
+        spotted: true,
+      })
+    }
+  }
+  
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -24,7 +35,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type]
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className="game-item" style={itemStyle} onClick={ this.onItemClick } >
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

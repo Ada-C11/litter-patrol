@@ -23,6 +23,11 @@ class GameItem extends Component {
     console.log(this.props.itemType);
   }
 
+  handleClick = () => {
+    this.onClickSpottedStatus();
+    this.props.clickEvent();
+  }
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -36,14 +41,12 @@ class GameItem extends Component {
     
     if (this.state.clickStatus === true && this.props.itemType === "litter") {
         classInformation = "game-item spotted-litter"
-      } else if (this.state.clickStatus === true && this.props.itemType !== "litter"){
+      } else if (this.state.clickStatus === true && this.props.itemType !== "litter") {
         classInformation = "game-item spotted-nature"
       }
 
-    // const spottedStatus = this.state.clickStatus ? "spotted-litter" : "spotted-nature";
-
     return (
-      <div className={classInformation} style={itemStyle} onClick={this.onClickSpottedStatus}>
+      <div className={classInformation} style={itemStyle} onClick={this.handleClick}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

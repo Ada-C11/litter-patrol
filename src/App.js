@@ -51,10 +51,12 @@ class App extends Component {
 
     // Store our state in a local variable so we can make the update
     let updatedPoints = this.state.points;
-    updatedPoints += 1;
 
-    // Call setState to update our state (and auto re-render)
-    this.setState({points: updatedPoints});
+    if (icon === "litter") {
+      updatedPoints += 1;
+      // Call setState to update our state (and auto re-render)
+      this.setState({points: updatedPoints});
+    }
   }
 
   render() {

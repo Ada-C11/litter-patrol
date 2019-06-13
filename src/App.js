@@ -39,8 +39,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (type) => {
+    if (type === 'litter') {
+      this.setState({
+        points: this.state.points + 1
+      })
+    }
   }
 
   render() {

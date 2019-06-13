@@ -11,6 +11,9 @@ body {
 
 .score {
   margin-left: 2vw;
+  position: relative;
+  left: 50px;
+  top: 50px;
 }
 
 .logo {

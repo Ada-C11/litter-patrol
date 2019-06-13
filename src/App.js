@@ -65,7 +65,7 @@ class App extends Component {
     return (
       <div className="game">
         <section className="hud">
-          <h2 className={`score ${scoreDisplay}`}>Litter Spotted: { this.state.points }</h2>
+          <h2 className={`score ${scoreDisplay}`}>Captain Planet Approval Rating: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
 

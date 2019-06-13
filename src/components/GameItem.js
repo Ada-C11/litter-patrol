@@ -18,9 +18,7 @@ class GameItem extends Component {
   }
 
   onClickSpottedStatus = () => {
-    console.log("Wahoo!!");
     this.setState({ clickStatus: true });
-    console.log(this.props.itemType);
   }
 
   handleClick = () => {

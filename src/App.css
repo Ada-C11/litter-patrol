@@ -54,7 +54,7 @@ body {
   font-size: 12rem;
   text-align: center;
   width: 100%;
-  color: green;
+  color: yellowgreen;
 }
 
 /* Assign this class when a non-litter item is clicked */
@@ -64,7 +64,7 @@ body {
   font-size: 12rem;
   text-align: center;
   width: 100%;
-  color: darkred;
+  color: tomato;
 }
 
 .overall-data {

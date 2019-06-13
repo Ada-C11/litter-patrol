@@ -17,7 +17,7 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onSpotted = () => {
+  onSpawnedItemClick = () => {
 
     const spottedType = (this.props.icon === "litter" ? "spotted-litter" : "spotted-nature");
 
@@ -40,7 +40,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.icon];
 
     return (
-      <div onClick={ this.onSpotted } className={`game-item ${ this.state.spottedType }`} style={itemStyle}>
+      <div onClick={ this.onSpawnedItemClick } className={`game-item ${ this.state.spottedType }`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

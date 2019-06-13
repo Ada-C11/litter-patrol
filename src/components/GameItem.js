@@ -3,10 +3,26 @@ import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
+
 class GameItem extends Component {
-  propTypes = {
+
+  constructor() {
+    super();
+    this.state = {
+      isClicked: false
+    };
+  }
+
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    isClicked: PropTypes.bool
+  }
+
+  onItemClickedCallback = () => {
+    this.setState({
+      isClicked: true,
+    });
   }
 
   render() {
@@ -15,16 +31,22 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
+    const icon = ItemIcons[this.props.type];
 
-    let icon = ItemIcons[this.props.type];
-    
+    let clickedClass = "game-item";
+    if (this.state.isClicked === true && this.props.type === "litter") {
+      clickedClass = "game-item spotted-litter"
+    } else if (this.state.isClicked === true && this.props.type !== "litter") {
+      clickedClass = "game-item spotted-nature"
+    }
+
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={clickedClass} style={itemStyle} onClick={this.onItemClickedCallback}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }
 }
+
 
 export default GameItem;

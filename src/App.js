@@ -56,7 +56,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                // Additional props (event callbacks, etc.) can be passed here
               type={item.type}
-              GameItemClick={this.onItemClick}//this refers to current element 
+              onClick={this.onItemClick}//this refers to current element 
              
              />;
     });

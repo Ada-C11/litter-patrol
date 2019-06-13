@@ -36,7 +36,7 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state.items);
+    console.log(this.state);
   }
 
   onItemClicked = () => {

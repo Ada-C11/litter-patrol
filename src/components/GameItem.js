@@ -25,7 +25,10 @@ class GameItem extends Component {
 
   handleClick = () => {
     this.onClickSpottedStatus();
-    this.props.clickEvent();
+
+    if (this.props.itemType === "litter") {
+      this.props.clickEvent();
+    }
   }
 
   render() {

@@ -18,8 +18,6 @@ class GameItem extends Component {
   }
 
   onClick = () => {
-    // let spottedItem = ``
-    // console.log(this.state.spottedItem)
     if (this.props.type === "litter") {
       this.setState({
         spottedItem: "spotted-litter"
@@ -36,14 +34,6 @@ class GameItem extends Component {
   }
 
   render() {
-    // let spottedItem = ""
-    // const onItemClick = () => {
-    // if (this.props.type === "litter") {
-    //   spottedItem = "spotted-litter"
-    // } else {
-    //   spottedItem = "spotted-nature"
-    // }
-    // }
     let spotItem = this.state.spottedItem
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen

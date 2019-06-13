@@ -14,11 +14,15 @@ class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
+    id: PropTypes.string
   }
 
   changeClickStatus = () => {
-    this.setState({clicked: !this.state.clicked}, (state) => console.log(state));
+    this.setState({clicked: !this.state.clicked});
+    if (this.props.type === "litter") {
+      this.props.onItemClickedCallBack(this.props.id)
+    }
   }
 
   render() {
@@ -39,11 +43,9 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
 
     return (
-      // <div onClick={ this.changeClickStatus } className={classToUse}>
       <div className={`game-item ${classToUse}`} style={itemStyle} onClick={ this.changeClickStatus } >
         <img src={icon} alt= "Item" className="icon-item"></img>
       </div>
-      // </div>
     );
   }
 }

@@ -23,6 +23,9 @@ class GameItem extends Component {
     this.setState({
       isClicked: true,
     });
+    if (this.props.type === "litter") {
+      this.props.points();
+    }
   }
 
   render() {

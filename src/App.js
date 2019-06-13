@@ -28,7 +28,7 @@ class App extends Component {
       items: [],
       points: 0,
     };
-  
+
 
     // Uncomment this to spawn a single test item
     const testItem = this.spawnItem(Date.now());
@@ -54,8 +54,7 @@ class App extends Component {
         layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
         key={item.id}            // Key - to help React with performance
         type={item.type}
-        isClicked={item.isClicked}
-        onItemClickedCallback={this.onItemClicked}
+        points={this.onItemClicked}
       />;
     });
 

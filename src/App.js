@@ -48,6 +48,12 @@ class App extends Component {
   onItemClicked = (itemIndex) => {
     // Fill this in!
     console.log(itemIndex);
+
+    // Store our state in a local variable so we can make the update
+    let updatedPoints = this.state.points;
+    updatedPoints += 1;
+
+    this.setState({points: updatedPoints});
   }
 
   render() {

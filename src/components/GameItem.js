@@ -15,17 +15,13 @@ class GameItem extends Component {
     this.setState({
       spottedItem: !this.state.spottedItem
     });
-
-    if (this.props.type === 'litter') {
-      // keep score
-    }
-
+    
+    this.props.itemClickCallback(this.props.type);
     console.log('spotted item!')
   }
   
 
   render() {
-
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
@@ -34,8 +30,8 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
 
+    // Change css if spotted Item is litter
     let spottedItemStyle  = " " 
-
     if (this.state.spottedItem ) { 
       this.props.type === "litter" ? spottedItemStyle = " spotted-litter" : spottedItemStyle = " spotted-nature";
     }
@@ -51,6 +47,7 @@ class GameItem extends Component {
 GameItem.propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
+
 }
 
 export default GameItem;

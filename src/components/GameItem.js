@@ -17,12 +17,12 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onClickSpottedStatus = () => {
+  onChangeSpottedStatus = () => {
     this.setState({ clickStatus: true });
   }
 
   handleClick = () => {
-    this.onClickSpottedStatus();
+    this.onChangeSpottedStatus();
 
     if (this.props.itemType === "litter") {
       this.props.clickEvent();

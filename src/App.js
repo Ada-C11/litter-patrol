@@ -30,13 +30,13 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    console.log(this.state.items);
   }
 
   onItemClicked = () => {
@@ -45,12 +45,15 @@ class App extends Component {
 
   render() {
     const items = this.state.items.map((item, i) => {
+      // console.log(item.type)
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
+              type={this.randomType()}
+              
              />;
     });
 
@@ -69,7 +72,6 @@ class App extends Component {
       </div>
     );
   }
-
 
   //////////////\\\\\\\\\\\\\\
   // Implementation details \\
@@ -114,7 +116,7 @@ class App extends Component {
     // Figure out what kind of item to create
     const id = uuid();
     const type = this.randomType();
-
+    
     const expiration = time + this.config.itemLifetime;
     const height = Math.random() * this.config.spawnHeight + this.config.spawnFloor;
 

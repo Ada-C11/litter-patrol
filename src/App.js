@@ -36,12 +36,10 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log('this is the state - points', this.state.points);
+    console.log(this.state);
   }
 
   onItemClicked = () => {
-    //console.log works but point sare not being added 
-      console.log("should add 1 point!")
       this.setState({
         points: this.state.points + 1,
       });
@@ -55,8 +53,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-               type={item.type}          //added this line 
-               itemClicked={this.onItemClicked} //use for scoring 
+               type={item.type}         
+               itemClicked={this.onItemClicked} 
 
                // Additional props (event callbacks, etc.) can be passed here
              />;

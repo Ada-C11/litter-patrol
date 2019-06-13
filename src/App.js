@@ -36,16 +36,31 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    // console.log(icon)
+    // console.log(this.state.items)
+
+    // if the clicked on element is a litter
+    // add className of spotted-litter
+    // else add className of spotted-nature
+
+    // if (icon.includes('litter')) {
+    //   console.log(`I'm a litter!!!`)
+    // }
+
+    // if (event.target === 'litter') {
+    //   console.log('clicked a litter!!')
+    // } else {
+    //   console.log('clicked a non-litter!!')
+    // }
   }
   
   render() {
     const items = this.state.items.map((item, i) => {
-      console.log(`This is the item ${item.type}`)
+      // console.log(item.type)
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg

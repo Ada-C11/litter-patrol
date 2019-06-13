@@ -6,11 +6,34 @@ import PropTypes from 'prop-types';
 class GameItem extends Component {
   constructor(props) {
     super(props)
-  }
+    this.state = ({
+      className: 'game-item',
+      testingItems: this.props.testingItems
+  })
+}
   
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+  }
+
+  // helper function
+  markItem = () => {
+    // console.log(event.target);
+    // console.log(this.state.itemType);
+
+    if (this.state.testingItems === "litter"){
+      console.log(`spotted litter! ${this.state.testingItems}`)
+      this.setState({
+        className: 'game-item spotted-litter'
+        
+      } )
+    } else {
+      console.log(`spotted non litter! ${this.state.testingItems}`)
+      this.setState({
+        className: 'game-item spotted-nature'
+      })
+    }
   }
 
   render() {
@@ -23,8 +46,8 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.testingItems]
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={this.state.className} style={itemStyle}>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.markItem}></img>
       </div>
     );
   }

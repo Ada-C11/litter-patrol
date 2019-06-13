@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import App from '../App.js';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
@@ -19,10 +20,13 @@ class GameItem extends Component {
 
   onItemClicked = () => {
     if (this.state.spotted === false) {
-      // this.setState({ 
-        // spotted: true
-        this.props.type === "litter" ? this.className="spotted-litter" : this.className="spotted-nature"
-      // })
+      this.spotted=true;
+      if (this.props.type === "litter") {
+        this.className="spotted-litter"
+        this.props.score();
+      } else {
+        this.className="spotted-nature"
+      }
     }
   }
 

@@ -7,33 +7,56 @@ class GameItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemDisplay: 'none',
-      alreadyClicked: false,
+      clickDisplay: 'none',
+      clicked: false,
     }
   }
-  // why does this need to be static?
+ 
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
+    updatedScoreCallback: PropTypes.func,
+  }
+
+  updateClickStatus = () => {
+    this.setState({
+      clicked: true
+    });
+  }
+
+  updateIconClass = () => {
+    this.setState({
+      clickDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
+    });
   }
 
   onIconClick = () => {
 
     const iconType = this.props.type;
-    const clickStatus = this.state.alreadyClicked;
+    const clickStatus = this.state.clicked;
 
-    // calling callback function passed as a prop
-    this.props.updateScoreCallback(iconType, clickStatus);
+    let earnedPoints
 
-    this.setState({
-      alreadyClicked: true
-    });
+    // earn 1 point for litter, -1 points for nature, and zero points otherwise
+    if (clickStatus === false) {
+      if (iconType === 'litter') {
+        earnedPoints = 1;
+      } else {
+        earnedPoints = -1;
+      }
+    } else {
+      earnedPoints = 0;
+    }
 
-    this.setState({
-      itemDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
-    });
+    // invoking callback function
+    this.props.updateScoreCallback(earnedPoints);
+   
+    // updating click status
+    this.updateClickStatus();
 
+    // updating className for type of icon spotted
+    this.updateIconClass();
   }
 
   render() {
@@ -47,7 +70,7 @@ class GameItem extends Component {
    
 
     return (
-      <div onClick={this.onIconClick} className={`game-item ${this.state.itemDisplay}`} style={itemStyle}>
+      <div onClick={this.onIconClick} className={`game-item ${this.state.clickDisplay}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

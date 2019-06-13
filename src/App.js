@@ -37,31 +37,25 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state.items);
+    // Uncomment this to print items array to console
+    // console.log(this.state.items);
   }
 
-  updateScore = (iconType, clickStatus) => {
-    let updatedPoints = this.state.points;
-
-    if (iconType === 'litter' && clickStatus === false) {
-      updatedPoints += 1;
-    } else if (iconType !== 'litter' && clickStatus === false) {
-      updatedPoints -= 1;
-    } else {
-      updatedPoints += 0;
-    }
+  updateScore = (earnedPoints) => {
+    let updatedPoints = this.state.points + earnedPoints;
     
     this.setState({ points: updatedPoints });
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
+
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-               type={item.type}
-               updateScoreCallback={this.updateScore}
+               type={item.type}         // Type - used for CSS click styling & scoring
+               updateScoreCallback={this.updateScore} // Callback Function - used to get points
              />;
     });
 

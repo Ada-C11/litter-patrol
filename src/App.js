@@ -52,6 +52,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                type = {item.type}
+               onItemClicked = {this.onItemClicked}
              />;
     });
 

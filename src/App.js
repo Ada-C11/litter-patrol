@@ -40,7 +40,8 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    console.log('Item clicked!');
+    // console.log('Item clicked!'); use this for points 
+
   }
 
   render() {
@@ -50,7 +51,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}          //added this line 
-               itemClicked={this.onItemClicked}
+               itemClicked={this.onItemClicked} //use for scoring 
 
                // Additional props (event callbacks, etc.) can be passed here
              />;

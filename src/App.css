@@ -13,6 +13,14 @@ body {
   margin-left: 2vw;
 }
 
+.winning-score {
+  color: black;
+}
+
+.losing-score {
+  color: red;
+}
+
 .logo {
   margin: 10vh auto 0 auto;
   display: block;
@@ -30,7 +38,7 @@ body {
   margin: 5px;
   cursor: pointer;
 
-  animation-duration: 4s;
+  animation-duration: 6s;
   animation-name: item-move;
   animation-timing-function: linear;
 

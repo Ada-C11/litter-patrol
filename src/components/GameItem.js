@@ -4,9 +4,59 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clickDisplay: 'none',
+      clicked: false,
+    }
+  }
+ 
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    updatedScoreCallback: PropTypes.func,
+  }
+
+  updateClickStatus = () => {
+    this.setState({
+      clicked: true
+    });
+  }
+
+  updateIconClass = () => {
+    this.setState({
+      clickDisplay: this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature',
+    });
+  }
+
+  onIconClick = () => {
+
+    const iconType = this.props.type;
+    const clickStatus = this.state.clicked;
+
+    let earnedPoints
+
+    // earn 1 point for litter, -1 points for nature, and zero points otherwise
+    if (clickStatus === false) {
+      if (iconType === 'litter') {
+        earnedPoints = 1;
+      } else {
+        earnedPoints = -1;
+      }
+    } else {
+      earnedPoints = 0;
+    }
+
+    // invoking callback function
+    this.props.updateScoreCallback(earnedPoints);
+   
+    // updating click status
+    this.updateClickStatus();
+
+    // updating className for type of icon spotted
+    this.updateIconClass();
   }
 
   render() {
@@ -15,11 +65,12 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    // Updated the icon type
+    const icon = ItemIcons[this.props.type];
+   
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick={this.onIconClick} className={`game-item ${this.state.clickDisplay}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

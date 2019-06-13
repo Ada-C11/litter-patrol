@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
+// import ItemIcons from './ItemIcons.js';
 
 class App extends Component {
   config = {
@@ -30,34 +31,41 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // Uncomment this to print items array to console
+    // console.log(this.state.items);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  updateScore = (earnedPoints) => {
+    let updatedPoints = this.state.points + earnedPoints;
+    
+    this.setState({ points: updatedPoints });
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
+
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}         // Type - used for CSS click styling & scoring
+               updateScoreCallback={this.updateScore} // Callback Function - used to get points
              />;
     });
+
+    // updates score color from black to red when losing
+    let scoreDisplay = this.state.points < 0 ? 'losing-score' : 'winning-score'
 
     return (
       <div className="game">
         <section className="hud">
-          <h2 className="score">Litter Spotted: { this.state.points }</h2>
+          <h2 className={`score ${scoreDisplay}`}>Captain Planet Approval Rating: { this.state.points }</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
 
@@ -104,7 +112,6 @@ class App extends Component {
         ];
       }
     }
-
     return newState;
   }
 

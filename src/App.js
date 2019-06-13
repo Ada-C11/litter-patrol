@@ -39,17 +39,23 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  updateScore = (itemIndex) => {
+   let newScore = this.state;
+   if (newScore.items[itemIndex].type === 'litter') { 
+     newScore.points += 1
+     this.setState(newScore)
+   }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+               layer={100 + i} 
+               index={i}         // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}
+               updateScoreCallback={this.updateScore}
                                         // Additional props (event callbacks, etc.) can be passed here
              />;
     });

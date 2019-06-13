@@ -17,6 +17,7 @@ class GameItem extends Component {
   }
 
   onIconClick = () => {
+    this.props.updateScoreCallback(this.props.index);
     this.setState({
       clicked: true,
     });

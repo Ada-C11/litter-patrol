@@ -8,8 +8,8 @@ class App extends Component {
   config = {
     itemTypes: {
       // type: spawn rate (weighting)
-      litter: 20,
-      rock: 5,
+      litter: 10,
+      rock: 2,
       bush: 5,
       flower: 5,
       mushroom: 5
@@ -39,8 +39,15 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    //TODO: Fill this in!
+  tallyPoint = type => {
+    if (type === 'litter')
+      this.setState({
+        points: this.state.points + 1
+      });
+    else
+      this.setState({
+        points: this.state.points - 1
+      });
   };
 
   render() {
@@ -51,7 +58,7 @@ class App extends Component {
           layer={100 + i} // Layer - used for a CSS style to show items on-top of bg
           key={item.id} // Key - to help React with performance
           type={item.type}
-          // TODO: Additional props (event callbacks, etc.) can be passed here
+          clickCallback={this.tallyPoint}
         />
       );
     });

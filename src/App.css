@@ -30,7 +30,7 @@ body {
   margin: 5px;
   cursor: pointer;
 
-  animation-duration: 6s;
+  animation-duration: 5s;
   animation-name: item-move;
   animation-timing-function: linear;
 

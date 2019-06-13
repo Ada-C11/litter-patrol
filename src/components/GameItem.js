@@ -34,8 +34,14 @@ class GameItem extends Component {
     // const icon = ItemIcons.rock;
     const icon = ItemIcons[this.props.type]
 
+    let gameItemStyle = "game-item"
+    if (this.state.spotted) {
+      const litterOrNature = (this.props.type === 'litter') ?  'litter' : 'nature';
+      gameItemStyle += ` spotted-${litterOrNature}`
+    };
+
     return (
-      <div className="game-item" style={itemStyle} onClick={ this.onItemClick } >
+      <div className={gameItemStyle} style={itemStyle} onClick={ this.onItemClick } >
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

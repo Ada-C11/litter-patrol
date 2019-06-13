@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   onItemClicked = (id) => {
-    updatedPoints = this.state.points + 1
+    let updatedPoints = this.state.points + 1
     this.setState({ points: updatedPoints });
   }
 

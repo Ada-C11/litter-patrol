@@ -4,14 +4,14 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       status: false
     };
   }
   
-  static propTypes = {
+  static propTypes = { 
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
@@ -22,7 +22,7 @@ onClickChangeStatus = () => {
     });
     
     if (this.props.type === 'litter'){
-    this.props.point();}
+    this.props.onSpottedClickCallback();}
   }
 
 

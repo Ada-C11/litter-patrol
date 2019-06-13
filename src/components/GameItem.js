@@ -13,13 +13,13 @@ class GameItem extends Component {
     this.state = {
       spotted: false
     };
-
   }
   
   onSpot = () =>{
     if(this.state.spotted === false) {
       this.setState({ spotted: true 
       });
+      this.props.onItemClickedCallback(this.props.type);
     }
   }
   render() {
@@ -33,7 +33,7 @@ class GameItem extends Component {
     if (this.state.spotted){
       spottedStyle = this.props.type === "litter" ? "spotted-litter" : "spotted-nature";
     }
-    console.log(this.props.type)
+
     const icon = ItemIcons[this.props.type];
     return (
       <div className={'game-item ' + spottedStyle} style={itemStyle} onClick={this.onSpot}>

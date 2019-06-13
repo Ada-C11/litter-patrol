@@ -38,9 +38,7 @@ class App extends Component {
 
     console.log(this.state);
   }
-  // this.setState({
-  //   displayName: !this.state.displayName,
-  // });
+
   onClickScore = () => {
     this.setState({ points: this.state.points + 1 });
   }

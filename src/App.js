@@ -36,13 +36,18 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    console.log('this is the state - points', this.state.points);
   }
 
   onItemClicked = () => {
-    // console.log('Item clicked!'); use this for points 
-
+    //console.log works but point sare not being added 
+      console.log("should add 1 point!")
+      this.setState({
+        points: this.state.points + 1,
+      });
+    
   }
+  
 
   render() {
     const items = this.state.items.map((item, i) => {

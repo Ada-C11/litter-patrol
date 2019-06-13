@@ -55,6 +55,7 @@ body {
     text-align: center;
     width: 100%;
     color: green;
+    /* z-index: 5000; */
 }
 
 /* Assign this class when a non-litter item is clicked */

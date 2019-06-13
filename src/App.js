@@ -14,7 +14,7 @@ class App extends Component {
       flower:   5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
+    spawnRate: .3, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
@@ -38,9 +38,11 @@ class App extends Component {
 
     console.log(this.state);
   }
-
+  
   onItemClicked = () => {
-    // Fill this in!
+   this.setState({
+     points: this.state.points + 1
+   })
   }
 
   render() {
@@ -51,6 +53,9 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
+                eachItem = {item.type}
+                // Callback to onItemClicked fuunction so we can use it in the GameItem component as a prop
+                onItemClickedCallback = {this.onItemClicked}
              />;
     });
 

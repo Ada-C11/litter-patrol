@@ -4,9 +4,24 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+  }
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+  }
+
+  onGameItemClick = () => {
+    console.log('Item clicked!');
+    if (!this.state.clicked && this.props.item === 'litter') this.props.incrementScoreFunc();
+    this.setState({
+      clicked: true,
+    })
   }
 
   render() {
@@ -16,10 +31,14 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.item];
 
+    let status = '';
+    if (this.state.clicked) {
+      status = (this.props.item === 'litter') ? 'spotted-litter' : 'spotted-nature';
+    }
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${status}`} style={itemStyle} onClick={this.onGameItemClick}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

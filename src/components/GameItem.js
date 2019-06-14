@@ -38,7 +38,7 @@ class GameItem extends Component {
     const classes = `game-item ${this.state.symbolClass}`
     return (
       // THIS IS INLINE STYLING...WHATTTT
-      <div className={classes} style={itemStyle} onClick = { this.addSymbols }>
+      <div className={classes} style={itemStyle} onClick = {() => {this.addSymbols(); this.props.updateScoreCallback(this.props)}}>
         <img 
          src={icon} alt="Item" className="icon-item"></img>
       </div>

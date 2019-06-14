@@ -39,8 +39,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = (event) => {
-    console.log(event.target)
+  updateScore = (GameItem) => {
+    if (GameItem.type === 'litter') {
+      const newPoints = this.state.points + 1
+      this.setState({points: newPoints})
+    }
   }
 
   render() {
@@ -52,6 +55,7 @@ class App extends Component {
                type = {item.type}
 
                // Additional props (event callbacks, etc.) can be passed here
+               updateScoreCallback = {this.updateScore} 
              />;
     });
 

@@ -9,6 +9,21 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      spottedItem: false	      
+    };
+  }	  
+
+   spotItem = () => {
+    this.setState({
+      spotItem: !this.state.spotItem
+    });
+     console.log('You have spotted an item!')
+   }	  
+  };
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen

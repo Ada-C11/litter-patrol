@@ -26,31 +26,34 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
+    // console.log(this.state);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
-  }
+  // WAVE 3 - Event Handler to add one point to total displayed
+  addPoints = () => {
+    this.setState((prevState) => ({
+      points: prevState.points + 1})
+    )
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
+               addPoints={this.addPoints} // Event Handler for Wave 3
                height={item.height}     // Height - used for a CSS style to position on the screen
+               key={item.id}            // ID for key - to help React with performance
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
                type={item.type}
-               // Additional props (event callbacks, etc.) can be passed here
              />;
     });
 

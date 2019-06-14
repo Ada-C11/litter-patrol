@@ -15,7 +15,7 @@ class GameItem extends Component {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
-  
+
 // learned this through ada-students-ports project 
   onItemClick = () => {
     this.setState({
@@ -36,15 +36,13 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
 
-    let addCSSToClicked = '';
-    if (this.state.clicked) {
-      this.props.type === 'litter' ? addCSSToClicked = 'spotted-litter' : addCSSToClicked = 'spotted-nature';
+    let addCSSToClicked = 'game-item';
+    if (this.state.clickedItem) {
+      this.props.type === 'litter' ? addCSSToClicked = 'game-item spotted-litter' : addCSSToClicked = 'game-item spotted-nature';
     }
-    
-    // const isLitter = icon === 'litter' ? className="spotted-litter" : className="spotted-nature"
-      
+  
     return (
-        <div className={`game-item${addCSSToClicked}`} style={itemStyle} onClick={this.onItemClick}>    
+        <div className={addCSSToClicked} style={itemStyle} onClick={this.onItemClick}>    
           <img src={icon} alt="Item" className="icon-item"></img>
         </div>
     );

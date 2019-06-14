@@ -14,6 +14,9 @@ class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    natureOrLitter: PropTypes.string.isRequired,
+    addPoints: PropTypes.func
   }
   
   onClick = () => {
@@ -35,7 +38,7 @@ class GameItem extends Component {
 
       return (
       <div className={`game-item ${this.state.spotted}-${this.props.natureOrLitter}`} style={itemStyle}>
-        <img  onClick={this.onClick} src={icon} alt="Item" className="icon-item"></img>
+        <img onClick={this.onClick} src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

@@ -18,7 +18,7 @@ class GameItem extends Component {
   }
 
   // **** check type and set class to give feedback on if it should've been clicked ****
-  changeClickRegister = () => {
+  whenImageIsClicked = () => {
     const checkOrX = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
     this.setState({
       checkOrX: checkOrX,
@@ -38,7 +38,7 @@ class GameItem extends Component {
 
     return (  // **** ADD AN EVENT LISTENER ****
       <div className={`game-item ${this.state.checkOrX}`} style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item " onClick={this.changeClickRegister}></img>
+        <img src={icon} alt="Item" className="icon-item " onClick={this.whenImageIsClicked}></img>
       </div>
     );
   }

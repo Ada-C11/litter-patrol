@@ -17,7 +17,8 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClick = () => {
+  markSpotted = () => {
+    if (!this.state.spotted && this.props.type === 'litter') this.props.itemClickCallback();
     this.setState({
       spotted: true
     })
@@ -29,12 +30,12 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    const icon = ItemIcons[this.props.itemIcon];
+    const icon = ItemIcons[this.props.type];
 
     let iconClass = 'game-item';
 
     if (this.state.spotted) {
-      if (this.props.itemIcon === 'litter') {
+      if (this.props.type === 'litter') {
         iconClass += ` spotted-litter`;
       } else {
         iconClass += ` spotted-nature`;
@@ -43,7 +44,7 @@ class GameItem extends Component {
 
     return (
       <div className={iconClass} style={itemStyle}>
-        <img onClick={ this.onItemClick } src={icon} alt="Item" className="icon-item"></img>
+        <img onClick={ this.markSpotted } src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

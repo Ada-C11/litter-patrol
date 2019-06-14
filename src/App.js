@@ -30,8 +30,8 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -39,8 +39,8 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (event) => {
+    console.log(event.target)
   }
 
   render() {
@@ -55,6 +55,8 @@ class App extends Component {
              />;
     });
 
+    // console.log(event)
+
     return (
       <div className="game">
         <section className="hud">
@@ -65,6 +67,7 @@ class App extends Component {
         <section className="level">
           { this.levelBackground() }
           { items }
+          
         </section>
 
       </div>

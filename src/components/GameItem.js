@@ -9,6 +9,7 @@ class GameItem extends Component {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
+    updateScoreCallback: PropTypes.func.isRequired
   }
 
   constructor(props) {

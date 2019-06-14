@@ -8,11 +8,9 @@ class GameItem extends Component {
     super(state);
 
     this.state = {
-      // height: this.props.height,
-      // layer: this.props.layer,
       type: this.props.type,
       className: 'game-item',
-      // chosen: this.props.chosen,
+      addPoint: this.props.addPoint,
     };
   }
 
@@ -20,13 +18,14 @@ class GameItem extends Component {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
-    // chosen: PropTypes.bool.isRequired,
+    addPoint: PropTypes.func.isRequired,
   }
 
   onImgClick = () => {
     if (this.props.type === "litter") {
+      this.state.addPoint();
       this.setState({
-        className: 'game-item spotted-litter'
+        className: 'game-item spotted-litter',
       })
     } else {
       this.setState({

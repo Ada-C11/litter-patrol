@@ -12,10 +12,10 @@ class GameItem extends Component {
 
   };
 }
-propTypes = {
+static propTypes = {
   height: PropTypes.number.isRequired,
   layer: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
+  // type: PropTypes.string.isRequired,
 }
 handleClick = () => {
   if(!this.state.clicked){
@@ -34,16 +34,19 @@ handleClick = () => {
     // Update this to select the correct icon for each item
     // const icon = ItemIcons.rock;
        const icon = ItemIcons[this.props.type]
-       let newClass = ["game-item"]
-       if (this.state.clicked) {
-        const secondClass = this.props.type === 'litter' ? "spotted-litter" : "spotted-nature";
-        newClass.push(secondClass)
-
+       let newClass = "game-item"
+       if (this.state.clicked === true && this.props.type === "litter") {
+        newClass = "game-item spotted-litter"
+       } else if (this.state.clicked === true && this.props.type !== "litter") {
+        newClass = "game-item spotted-nature"
        }
+      
+
+       
        
 
     return (
-      <div className={newClass.join(' ')} style={itemStyle} onClick={this.handleClick}>
+      <div className={newClass} style={itemStyle} onClick={this.handleClick}>
         <img src={icon} alt="Item" className="icon-item" ></img>
       </div>
     );

@@ -40,11 +40,14 @@ class App extends Component {
     // console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // **** Fill this in! ****
-    // this.setState({ spotted: true }) **this probably isn't right
-    // console.log("onItemClicked triggered"); **this probably isn't right
+  onItemClicked = (type) => {
+    if (type === "litter") {
+      const currentPoints = this.state.points + 1;
+      this.setState({
+        points: currentPoints,
+    })
   }
+}
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -55,6 +58,7 @@ class App extends Component {
                key={item.id}           // Key - to help React with performance
                type={item.type}
                spotted={false}
+               onItemClickedCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

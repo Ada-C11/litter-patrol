@@ -24,6 +24,7 @@ class GameItem extends Component {
       checkOrX: checkOrX,
       spotted: true,
     });
+    this.props.onItemClickedCallback(this.props.type)
   }
 
   render() {

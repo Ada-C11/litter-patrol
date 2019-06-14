@@ -31,22 +31,22 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-   // this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    // console.log(this.state);
-    // var test = this.randomType();
-    // console.log(test);
+    console.log(this.state);
+    var test = this.randomType();
+    console.log(test);
   }
 
-  onItemClicked = (event) => {
-    // Fill this in!
-    //this.setState({ inputValue: event.target});
-    console.log(event.target);
-  }
+  // onItemClicked = (event) => {
+  //   // Fill this in!
+  //   //this.setState({ inputValue: event.target});
+  //   //console.log(event.target);
+  // }
 
   render() {
     const items = this.state.items.map((item, index) => {
@@ -56,7 +56,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                // Additional props (event callbacks, etc.) can be passed here
               type={item.type}
-              onClick={this.onItemClick}//this refers to current element 
+              //onClick={this.onItemClicked}//this refers to current element 
              
              />;
     });

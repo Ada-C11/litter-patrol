@@ -33,14 +33,22 @@ class App extends Component {
     //const testItem = this.spawnItem(Date.now());
     //this.state.items.push(testItem);
 
-    // Uncomment this to automatically spawn new items
+    //Uncomment this to automatically spawn new items
     this.enableSpawner();
 
     console.log(this.state);
+    
+    this.onItemClicked = this.onItemClicked.bind(this);
+
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (isLitter) => {
+    console.log(this.state.points);
+    if (isLitter) {
+      this.setState(state => ({
+        points: state.points + 1
+      }));
+    }
   }
 
   render() {
@@ -48,9 +56,12 @@ class App extends Component {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
+               key={item.id}
                // Additional props (event callbacks, etc.) can be passed here
+               //Wave 1
+               type={item.type}
+               //this would be good for multiple event handlers
+               clickHandlers={[this.onItemClicked]}
              />;
     });
 

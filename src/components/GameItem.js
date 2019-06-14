@@ -20,6 +20,7 @@ propTypes = {
 handleClick = () => {
   if(!this.state.clicked){
     this.setState({clicked: true});
+    this.props.onItemClicked(this.props.type)
   }
 }
 

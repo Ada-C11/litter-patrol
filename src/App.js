@@ -14,7 +14,7 @@ class App extends Component {
       flower:   5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
+    spawnRate: .8, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
@@ -67,6 +67,7 @@ class App extends Component {
       <div className="game">
         <section className="hud">
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
+          <h4 className="score"> High Score: Alex, 39 points </h4>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
 

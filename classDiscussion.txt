@@ -1,0 +1,16 @@
+for every interactive element, answer:
+- what should the user experience when the user interacts with this element?
+	after clicking an icon that is of type litter the points should increase once.
+- what react component does this element live in? GameItem
+- what react component does this element’s event handler live in? (what is the piece of code that proves this?)
+	the eventhandler lives in GameItem
+- where does any relevant state live? how does the state get updated? (what is the piece of code that proves this?)
+state  for tracking points lives in the app, states gets updated via a callback function that is nested inside the GameItem event handler
+- do any functions get passed around to affect this element & event handling? YES
+-- if yes, answer: what gets passed? 
+the function onItemsClicked as a prop callback function 
+what type of thing is it? a callback function
+ what is it called? onItemClickedCallback
+how does it get passed? props
+how does it get invoked? in eventhandler
+-- what is the responsibility of this function? (edited) to update state in app. 

@@ -20,7 +20,7 @@ class GameItem extends Component {
         spotted: !this.state.spotted,
       });
       if (this.state.isLitter) {
-        this.props.pointTracker();
+        this.props.onItemClickedCallback();
       }
     }
   };

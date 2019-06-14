@@ -23,7 +23,6 @@ class App extends Component {
 
   constructor() {
     super();
-
     this.state = {
       items: [],
       points: 0,
@@ -35,8 +34,6 @@ class App extends Component {
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
-    console.log(this.state.items);
   }
 
   onItemClicked = () => {
@@ -52,7 +49,7 @@ class App extends Component {
           key={item.id} // Key - to help React with performance
           // Additional props (event callbacks, etc.) can be passed here
           itemType={item.type}
-          pointTracker={this.onItemClicked}
+          onItemClickedCallback={this.onItemClicked}
         />
       );
     });

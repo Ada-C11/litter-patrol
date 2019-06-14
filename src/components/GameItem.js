@@ -22,7 +22,6 @@ class GameItem extends Component {
     });
      console.log('You have spotted an item!')
    }	  
-  };
 
   render() {
     const itemStyle = {
@@ -35,7 +34,7 @@ class GameItem extends Component {
 
     return (
       <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+        <img onClick={ this.spotItem } src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

@@ -22,16 +22,19 @@ class App extends Component {
   }
 
   constructor() {
+    // when you override a constructor you HAVE to call super
     super();
 
     this.state = {
+      // array of active objects
       items: [],
+      // player scored by clicking on litter items
       points: 0,
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -40,7 +43,9 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   render() {
@@ -49,7 +54,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+               icon={item.type}
+               onItemClicked={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

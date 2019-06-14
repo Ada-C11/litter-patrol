@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
-import ItemIcons from '../ItemIcons.js'; // This is bringing in the images in the web app
+import ItemIcons from '../ItemIcons.js'; 
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
-    key: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     updatePoints: PropTypes.func.isRequired,
   }
@@ -21,9 +20,11 @@ class GameItem extends Component {
   }
 
   markClicked = () => {
+
    this.setState({
      wasClicked: true,
    })
+
     if (this.props.type === 'litter'){
       this.props.updatePoints()
       this.setState({
@@ -34,6 +35,7 @@ class GameItem extends Component {
         iconClass: "spotted-nature",
       });
     }
+    
   }
 
   render() {
@@ -45,7 +47,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type]; 
 
     return (
-      <div key={this.key} className={"game-item " + this.state.iconClass} style={itemStyle} >
+      <div className={"game-item " + this.state.iconClass} style={itemStyle} >
         <img src={icon} alt="Item" className="icon-item" onClick={this.markClicked}></img>
       </div>
     );

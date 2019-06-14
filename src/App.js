@@ -18,7 +18,7 @@ class App extends Component {
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
-    itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
+    itemLifetime: 60 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
 
   constructor() {
@@ -27,6 +27,7 @@ class App extends Component {
     this.state = {
       items: [],
       points: 0,
+      
     };
 
     // Uncomment this to spawn a single test item
@@ -36,21 +37,29 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    //console.log(this.state);
   }
 
-  onItemClicked = () => {
+    onItemClicked = (iconType) => {
     // Fill this in!
+    if (iconType === 'litter'){
+      const addPoints = this.state.points + 1;
+      this.setState({points: addPoints})
+    }
   }
+
+
 
   render() {
-    const items = this.state.items.map((item, i) => {
+    const items = this.state.items.map((item, index) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+               layer={100 + index}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
                // Additional props (event callbacks, etc.) can be passed here
+              type={item.type}
+              onItemClickedCallback = {this.onItemClicked} // even handler passed by props 
+             
              />;
     });
 

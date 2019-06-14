@@ -26,25 +26,22 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
-      count: 0
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
-    const testItem = this.spawnItem(Date.now());
-    this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
-    this.onItemClicked = this.onItemClicked.bind(this);
   }
 
   onItemClicked = item => {
     if (item.type === "litter") {
       this.setState(prevState => {
         return {
-          count: prevState.count + 1
+          points: prevState.points + 1
         };
       });
     }
@@ -58,7 +55,7 @@ class App extends Component {
           layer={100 + i} // Layer - used for a CSS style to show items on-top of bg
           key={item.id} // Key - to help React with performance
           item={item} // Additional props (event callbacks, etc.) can be passed here
-          clickHandler={() => this.onItemClicked(item)}
+          clickHandler={this.onItemClicked}
         />
       );
     });
@@ -66,7 +63,7 @@ class App extends Component {
     return (
       <div className="game">
         <section className="hud">
-          <h2 className="score">Litter Spotted: {this.state.count}</h2>
+          <h2 className="points">Litter Spotted: {this.state.points}</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
 

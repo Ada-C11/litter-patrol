@@ -10,18 +10,16 @@ class GameItem extends Component {
     this.state = {
       spottedClass: ""
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     if (this.props.item.type === "litter") {
       this.setState({ spottedClass: "spotted-litter" });
     } else {
       this.setState({ spottedClass: "spotted-nature" });
     }
 
-    this.props.clickHandler();
+    this.props.clickHandler(this.props.item);
   }
 
   render() {
@@ -39,22 +37,10 @@ class GameItem extends Component {
         style={itemStyle}
         onClick={this.handleClick}
       >
-        <img
-          litter={this.props.isLitter}
-          src={icon}
-          alt="Item"
-          className="icon-item"
-        />
+        <img src={icon} alt="Item" className="icon-item" />
       </div>
     );
   }
-
-  //   <p>
-  //   {this.props.isPresent ? 'Present' : 'Absent'} today
-  //   <button
-  //     disabled={this.props.isPresent}
-  //   >Mark Present</button>
-  // </p>
 
   static propTypes = {
     height: PropTypes.number.isRequired,

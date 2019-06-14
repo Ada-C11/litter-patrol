@@ -17,11 +17,11 @@ class GameItem extends Component {
   }
 
 // learned this through ada-students-ports project 
-  onItemClick = () => {
+  markItemClick = () => {
     this.setState({
       clickedItem: true,
     });
-    this.props.type === 'litter' && this.props.onItemClickCallback(this.props.index);
+    this.props.type === 'litter' && this.props.onItemClickedCallback(this.props.index);
   }
 
   //create an event handler for onClick of icon
@@ -42,7 +42,7 @@ class GameItem extends Component {
     }
   
     return (
-        <div className={addCSSToClicked} style={itemStyle} onClick={this.onItemClick}>    
+        <div className={addCSSToClicked} style={itemStyle} onClick={this.markItemClick}>    
           <img src={icon} alt="Item" className="icon-item"></img>
         </div>
     );

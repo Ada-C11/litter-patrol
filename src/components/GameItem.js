@@ -19,7 +19,7 @@ class GameItem extends Component {
     isClicked: PropTypes.bool
   }
 
-  onItemClickedCallback = () => {
+  onItemClicked = () => {
     this.setState({
       isClicked: true,
     });
@@ -44,7 +44,7 @@ class GameItem extends Component {
     }
 
     return (
-      <div className={clickedClass} style={itemStyle} onClick={this.onItemClickedCallback}>
+      <div className={clickedClass} style={itemStyle} onClick={this.onItemClicked}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

@@ -14,15 +14,15 @@ class GameItem extends Component {
   
   onItemClicked = () => {
     this.setState({
-      beenClicked: !this.state.beenClicked
+      beenClicked: true
     });
-    console.log(this.state.beenClicked);
+    this.props.onItemClickedCallback(this.props.type);
   };
 
   render() {
     let clickType;
     if (this.state.beenClicked) {
-      clickType = this.props.type === 'litter'? 'spotter-litter' : 'spotted-nature';
+      clickType = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
     };
 
     const itemStyle = {

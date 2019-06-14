@@ -12,8 +12,8 @@ class GameItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      spotted: this.props.spotted,
       checkOrX: ""
+      // spotted: this.props.spotted,
     };
   }
 
@@ -22,7 +22,7 @@ class GameItem extends Component {
     const checkOrX = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
     this.setState({
       checkOrX: checkOrX,
-      spotted: true,
+      // spotted: true,
     });
     this.props.onItemClickedCallback(this.props.type)
   }

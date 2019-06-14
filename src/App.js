@@ -33,14 +33,13 @@ class App extends Component {
     //const testItem = this.spawnItem(Date.now());
     //this.state.items.push(testItem);
 
-    // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
     console.log(this.state);
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    this.setState({points: this.state.points + 1});
   }
 
   render() {
@@ -52,6 +51,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
+               onItemClicked={this.onItemClicked}
              />;
     });
 

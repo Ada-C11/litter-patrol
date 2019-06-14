@@ -19,9 +19,11 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    console.log("This item was clicked");
     const className = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
     this.setState({ className });
+    if (this.props.type === 'litter') {
+      this.props.onItemClicked();
+    }
   }
 
   render() {

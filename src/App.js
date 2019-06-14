@@ -21,17 +21,23 @@ class App extends Component {
     itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
 
+  // ** When we override the implicit constructor with our own, we NEED super
   constructor() {
+    // ** Right now this is the same as the implicit default constructor we inherit from Component
     super();
 
+    // ** Data that will fluctuate while running the app
     this.state = {
       items: [],
       points: 0,
     };
 
+
+    // ** Creates an instance of a spawn item
+    // ** Pushes testItem into items array (defined above) inside this.state
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -39,21 +45,37 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (icon) => {
     // Fill this in!
+    console.log(icon);
+
+    // Store our state in a local variable so we can make the update
+    let updatedPoints = this.state.points;
+
+    if (icon === "litter") {
+      updatedPoints += 1;
+      // Call setState to update our state (and auto re-render)
+      this.setState({points: updatedPoints});
+    }
   }
 
   render() {
+
+    // ** Mapping the items array from the constructor, into another array
+    // that's populated with GameItem components, with are then rendered
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
+               icon={item.type}
+               onItemClickedCallback={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
 
+    // Score, logo, etc
     return (
       <div className="game">
         <section className="hud">

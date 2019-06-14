@@ -24,7 +24,6 @@ class GameItem extends Component {
     this.props.onItemClickedCallback(this.props.icon);
 
     this.setState({
-      isSpotted: true,
       spottedType: spottedType,
     });
 

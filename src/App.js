@@ -30,35 +30,24 @@ class App extends Component {
     };
 
     this.enableSpawner();
+  }
 
-    updateScore = () => {
-      let score = this.state.points;
-      score += 1;
-      this.setState({ points: score });
-    }
-  
-    markClicked = (itemIndex) => {
-      let updatedItems = this.state.items;
-      if (!updatedItems[itemIndex].isClicked) {
-        updatedItems[itemIndex].isClicked = true;
-  
-        this.setState({ items: updatedItems });
-      }
-    }
+  updateScore = () => {
+    let score = this.state.points;
+    score += 1;
+    this.setState({ points: score });
+  }
 
-    render() {
-      const items = this.state.items.map((item, i) => {
-        return <GameItem
-                  height={item.height}     // Height - used for a CSS style to position on the screen
-                  layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-                  key={item.id}            // Key - to help React with performance
-                  type={item.type}
-                  key={item.id}
-                  index = {i}
-                  isClicked={false}
-                  markClickedCallback={ this.markClicked }
-                />;
-      });
+  render() {
+    const items = this.state.items.map((item, i) => {
+      return <GameItem
+               height={item.height}
+               layer={100 + i}
+               type={item.type}
+               key={item.id}
+               updateScoreCallback={ this.updateScore }
+             />;
+    });
 
     return (
       <div className="game">

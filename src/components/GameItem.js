@@ -12,13 +12,15 @@ class GameItem extends Component {
     };
   }
 
-  onItemClicked = () => {	    
-    this.props.markClickedCallback(this.props.index);
+  onItemClicked = () => {
     this.setState({isClicked: true});
+    if (this.props.type === "litter") {
+      this.props.updateScoreCallback();
+    }
   }
 
   markImage = () => {
-    if (this.props.isClicked) {
+    if (this.state.isClicked) {
       if (this.props.type === "litter") {
         return "spotted-litter"
       } else {
@@ -31,16 +33,16 @@ class GameItem extends Component {
 
   render() {
     const itemStyle = {
-      bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
-      zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
+      bottom: `${this.props.height}px`,
+      zIndex: this.props.layer,
     };
 
-    // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className={"game-item " + this.markImage(icon)} style={itemStyle}>
-         <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked }></img>
+      // Added the onClick to both div and img elements to increase surface area of click
+      <div className={"game-item " + this.markImage()} style={itemStyle} onClick={ this.onItemClicked } disabled={this.props.isClicked}>
+        <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked } disabled={this.props.isClicked}></img>
       </div>
     );
   }

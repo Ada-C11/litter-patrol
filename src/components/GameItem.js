@@ -17,7 +17,6 @@ class GameItem extends Component {
 
     const item = this.props.item
 
-    console.log(item.className)
     // Update this to select the correct icon for each item
     const icon = ItemIcons[item.type];
 

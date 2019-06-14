@@ -9,5 +9,5 @@ export default {
   rock,
   bush,
   flower,
-  mushroom
+  mushroom,
 }

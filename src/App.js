@@ -4,6 +4,7 @@ import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
 
+
 class App extends Component {
   config = {
     itemTypes: {
@@ -30,27 +31,27 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
-    // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
-    console.log(this.state);
   }
-
+  
   onItemClicked = () => {
-    // Fill this in!
+    this.setState(prevState => {
+      return {points:  prevState.points + 1}
+    });
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
+
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}
+               updatePoints={this.onItemClicked}
              />;
     });
 
@@ -58,7 +59,7 @@ class App extends Component {
       <div className="game">
         <section className="hud">
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
-          <img className="logo" src={logo} alt="Litter Patrol logo" />
+          <img className="logo" src={logo} alt="Litter Patrol logo"/>
         </section>
 
         <section className="level">

@@ -39,19 +39,23 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onSpottedClick = () => {
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
+              type={item.type}
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
-               // Additional props (event callbacks, etc.) can be passed here
-             />;
+               onSpottedClickCallback={ this.onSpottedClick }
+
+             />
     });
 
     return (

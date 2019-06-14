@@ -5,7 +5,7 @@ import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
 
 class App extends Component {
-  config = {
+   config = {
     itemTypes: {
       // type: spawn rate (weighting)
       litter:  20,
@@ -27,23 +27,67 @@ class App extends Component {
     this.state = {
       items: [],
       points: 0,
+      onPlay: false,
+      hasBeenPlayed: false,
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
-
-    // Uncomment this to automatically spawn new items
-    this.enableSpawner();
-
-    console.log(this.state);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  startGame = () => {
+    // Uncomment this to automatically spawn new items
+    this.enableSpawner();
+    this.setState({
+      onPlay: true,
+      hasBeenPlayed: false,
+      points: 0, // so that after the player has played the game once and click
+                //"Start Game" again, the points will be reset to 0
+    });
+  }
+
+  stopGame = () => {
+    // Uncomment this to automatically spawn new items
+    this.disableSpawner();
+    this.setState({
+      onPlay: false,
+      hasBeenPlayed: true,
+    });
+  }
+
+  markLitterSpotted = (itemIndex) => {
+    let updatedItems = this.state.items;
+    if (updatedItems[itemIndex].type === "litter") {
+      updatedItems[itemIndex].isSpotted = true;
+      this.increasePoints();
+    } else {
+      updatedItems[itemIndex].isSpotted = false;
+    }
+    this.setState({items: updatedItems});
+  }
+
+  increasePoints = () => {
+    let updatedPoints = this.state.points;
+    updatedPoints += 1;
+    this.setState({points: updatedPoints});
   }
 
   render() {
+
+    let startGame = "start-game";
+    let stopGame = "stop-game hide";
+
+    if (this.state.onPlay === true) {
+       startGame = "start-game hide";
+       stopGame = "stop-game";
+    }
+
+    let totalPoints = "total-points hide";
+    if (this.state.hasBeenPlayed === true) {
+      totalPoints = "total-points";
+    }
+    
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
@@ -51,6 +95,10 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
+               index={i}
+               itemType={item.type}
+               isLitterSpotted={item.isSpotted}
+               markSpottedCallback={this.markLitterSpotted}
              />;
     });
 
@@ -58,13 +106,27 @@ class App extends Component {
       <div className="game">
         <section className="hud">
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
+          <div onClick={this.stopGame} className={stopGame}>
+            <h3>Stop Game</h3>
+          </div>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
+          <div onClick={this.startGame} className={startGame}>
+            <h1>Start Game</h1>
+          </div>
+
+          <div className={totalPoints}>
+            <h3>Total Number of Litters Spotted: {this.state.points} </h3>
+          </div>
+
         </section>
 
         <section className="level">
           { this.levelBackground() }
           { items }
+          
         </section>
+
+        
 
       </div>
     );
@@ -117,8 +179,9 @@ class App extends Component {
 
     const expiration = time + this.config.itemLifetime;
     const height = Math.random() * this.config.spawnHeight + this.config.spawnFloor;
+    let isSpotted = null;
 
-    return {id, type, expiration, height};
+    return {id, type, expiration, height, isSpotted};
   }
 
   randomType() {
@@ -146,6 +209,10 @@ class App extends Component {
 
   enableSpawner() {
     this.spawnItems = true;
+  }
+
+  disableSpawner() {
+    this.spawnItems = false;
   }
 
   levelBackground() {

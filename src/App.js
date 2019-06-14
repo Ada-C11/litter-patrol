@@ -39,18 +39,26 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (itemType) => {
+    // only add points when the item clicked is litter
+    console.log(this.state.points)
+    return () => {
+      if (itemType === "litter") {
+        this.setState({
+          points: this.state.points += 1
+        })
+      }
+    }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
+        height={item.height}     // Height - used for a CSS style to position on the screen
+        layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+        key={item.id}            // Key - to help React with performance
+        iconName={item.type}
+        onItemClicked={this.onItemClicked}
              />;
     });
 
@@ -63,7 +71,7 @@ class App extends Component {
 
         <section className="level">
           { this.levelBackground() }
-          { items }
+          {items}
         </section>
 
       </div>

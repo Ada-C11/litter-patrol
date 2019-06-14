@@ -10,8 +10,18 @@ class GameItem extends Component {
     type: PropTypes.string.isRequired,
   }
 
+  constructor() {
+    super();
+
+    this.state = {
+      className: ""
+    };
+  }
+
   onItemClicked = () => {
     console.log("This item was clicked");
+    const className = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
+    this.setState({ className });
   }
 
   render() {
@@ -22,8 +32,10 @@ class GameItem extends Component {
 
     const icon = ItemIcons[this.props.type];
 
+    const spotted = "game-item " + this.state.className;
+
     return (
-      <div className="game-item" style={itemStyle} onClick={this.onItemClicked}>
+      <div className={spotted} style={itemStyle} onClick={this.onItemClicked}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );

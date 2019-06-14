@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 //wave 2
 class GameItem extends Component {
-  propTypes = {
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
@@ -23,6 +23,10 @@ class GameItem extends Component {
     this.setState(state => ({
       clicked: true
     }));
+    this.props.clickHandlers.forEach(handler => {
+      const isLitter = this.props.type === "litter";
+      handler(isLitter);
+    });
   }
 
   render() {

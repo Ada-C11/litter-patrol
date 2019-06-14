@@ -37,12 +37,18 @@ class App extends Component {
     this.enableSpawner();
 
     console.log(this.state);
+    
+    this.onItemClicked = this.onItemClicked.bind(this);
+
   }
 
-  onItemClicked = () => {
-   this.setState({
-     points: this.points.value +=1
-   })
+  onItemClicked = (isLitter) => {
+    console.log(this.state.points);
+    if (isLitter) {
+      this.setState(state => ({
+        points: state.points + 1
+      }));
+    }
   }
 
   render() {
@@ -54,6 +60,8 @@ class App extends Component {
                // Additional props (event callbacks, etc.) can be passed here
                //Wave 1
                type={item.type}
+               //this would be good for multiple event handlers
+               clickHandlers={[this.onItemClicked]}
              />;
     });
 

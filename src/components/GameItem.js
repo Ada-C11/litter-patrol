@@ -18,7 +18,7 @@ class GameItem extends Component {
 
    spottedItemClick = () => {
     this.setState({
-      status: true,
+      spot: true,
     });
   
     if (this.props.type === 'litter') {
@@ -46,7 +46,7 @@ class GameItem extends Component {
       }  else if (this.state.spot === true && this.props.type !== 'litter') {
       statusClass = 'game-item spotted-nature'
     } 
-    console.log(this.state.spot)
+    // console.log(this.state.spot)
     return (
       <div className={statusClass} style={itemStyle} onClick={this.spottedItemClick}>
         <img src={icon} alt="Item" className="icon-item"></img>

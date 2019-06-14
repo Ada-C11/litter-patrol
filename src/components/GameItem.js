@@ -22,9 +22,10 @@ class GameItem extends Component {
   onGameItemClicked = () => {
     // console.log(this.props.icon)
     if (this.props.icon === "litter") {
-      this.setState({ isClicked: true, itemClass: 'game-item spotted-litter' })
+      this.setState({ isClicked: true, itemClass: 'game-item spotted-litter' });
+      this.props.onItemClickedCallback();
     } else {
-      this.setState({ isClicked: true, itemClass: 'game-item spotted-nature' })
+      this.setState({ isClicked: true, itemClass: 'game-item spotted-nature' });
     }
   }
 

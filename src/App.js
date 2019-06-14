@@ -43,7 +43,9 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   render() {
@@ -53,6 +55,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                icon={item.type}
+               onItemClicked={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

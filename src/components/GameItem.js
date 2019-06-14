@@ -17,11 +17,17 @@ class GameItem extends Component {
   }
 
   onTypeClick = () => {
-    const spottedType = (this.props.icon === "litter" ? "spotted-litter" : "spotted-nature")
+    let spottedType;
+    if (this.props.icon === 'litter') {
+      spottedType = 'spotted-litter';
+      this.props.onItemClicked();
+    } else {
+      spottedType = 'spotted-nature';
+    }
+
     this.setState({
       spottedType: spottedType,
     });
-
   }
 
   render() {

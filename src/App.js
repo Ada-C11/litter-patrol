@@ -40,7 +40,9 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in!
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   render() {

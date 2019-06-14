@@ -19,15 +19,11 @@ class GameItem extends Component {
 
   // **** check type and set class to give feedback on if it should've been clicked ****
   changeClickRegister = () => {
-    console.log('changeClickRegister was triggered');
     const checkOrX = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature';
-    console.log(checkOrX);
     this.setState({
       checkOrX: checkOrX,
       spotted: true,
     });
-    console.log(this.state.spotted);
-    console.log(this.props.type);
   }
 
   render() {
@@ -38,8 +34,6 @@ class GameItem extends Component {
 
     // select the correct icon for each item
     const icon = ItemIcons[this.props.type];
-
-    // console.log(this.state.checkOrX);
 
     return (  // **** ADD AN EVENT LISTENER ****
       <div className={`game-item ${this.state.checkOrX}`} style={itemStyle}>

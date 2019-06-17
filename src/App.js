@@ -39,7 +39,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-
+  onItemClicked = (item) => {
+      this.setState({
+        points: this.state.points + 1
+      })
+      console.log(this.state.points)
+  }
 
   render() {
     const items = this.state.items.map((item, i) => {

@@ -18,12 +18,13 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    console.log("clicked it");
-    console.log(this.itemTypes);
-      this.setState = {
-        isClicked: true,
-      }
+  onClicked = () => {
+    // console.log("clicked it");
+    this.setState({
+      isClicked: true,
+    })
+    if (this.props.type === 'litter')
+     this.props.clicked();
   }
 
 
@@ -47,19 +48,15 @@ class GameItem extends Component {
     
     let color = 'game-item'
 
-    if (this.state.isClicked && icon === 'litter') {
-      color = 'game item spotted-litter'
-    } else if (this.isClicked) {
-      color = 'game item spotted-nature'
+    if (this.state.isClicked && this.props.type === 'litter') {
+      // crap, just accidentally used icon instead of this.props.types, whole issue
+      color = 'game-item spotted-litter'
+    } else if (this.state.isClicked) {
+      color = 'game-item spotted-nature'
     }
-    /* Assign this class when a litter item is clicked */
-// .spotted-litter::before {
-
-/* Assign this class when a non-litter item is clicked */
-// .spotted-nature::before
     return (
       <div className={color} style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item" onClick={this.onItemClicked}></img>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.onClicked}></img>
       </div>
     );
   }

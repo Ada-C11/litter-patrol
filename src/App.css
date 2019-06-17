@@ -30,7 +30,7 @@ body {
   margin: 5px;
   cursor: pointer;
 
-  animation-duration: 4s;
+  animation-duration: 5s;
   animation-name: item-move;
   animation-timing-function: linear;
 
@@ -49,26 +49,26 @@ body {
 
 /* Assign this class when a litter item is clicked */
 .spotted-litter::before {
-    content: '✓';
-    position: absolute;
-    font-size: 12rem;
-    text-align: center;
-    width: 100%;
-    color: green;
+  content: '✓';
+  position: absolute;
+  font-size: 12rem;
+  text-align: center;
+  width: 100%;
+  color: yellowgreen;
 }
 
 /* Assign this class when a non-litter item is clicked */
 .spotted-nature::before {
-    content: 'x';
-    position: absolute;
-    font-size: 12rem;
-    text-align: center;
-    width: 100%;
-    color: darkred;
+  content: 'x';
+  position: absolute;
+  font-size: 12rem;
+  text-align: center;
+  width: 100%;
+  color: tomato;
 }
 
 .overall-data {
-  color: #FEFAE0;
+  color: #fefae0;
 }
 
 @keyframes item-move {
@@ -171,7 +171,7 @@ body {
 .level-bg-ground {
   z-index: 20;
   background-image: url('images/ground.png');
-  animation-duration: 18s;
+  animation-duration: 60s;
 
   /* Ground is down further to make for more play area */
   top: -30vh;

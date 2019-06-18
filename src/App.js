@@ -14,11 +14,11 @@ class App extends Component {
       flower:   5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
+    spawnRate: .8, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
-    itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
+    itemLifetime: 15 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
 
   constructor() {
@@ -27,29 +27,38 @@ class App extends Component {
     this.state = {
       items: [],
       points: 0,
+
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  onItemClicked = (type) => {
+    if (type === "litter") {
+      const currentPoints = this.state.points + 1;
+      this.setState({
+        points: currentPoints, // Is there a way to do the addition on this line? When I tried (this.state.points += 1), React gave me a warning to not set state directly.
+    })
   }
+}
 
   render() {
     const items = this.state.items.map((item, i) => {
+      // console.log((item));
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
+               key={item.id}           // Key - to help React with performance
+               type={item.type}
+               // spotted={false}
+               onItemClickedCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
@@ -58,6 +67,7 @@ class App extends Component {
       <div className="game">
         <section className="hud">
           <h2 className="score">Litter Spotted: { this.state.points }</h2>
+          <h4 className="score"> High Score: Alex, 39 points </h4>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
         </section>
 

@@ -4,9 +4,26 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  propTypes = {
+  // typechecking 
+  static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    updateScoreCallback: PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      symbolClass: 'unspotted',
+    };
+  }
+
+  addSymbols = () => {
+    const addSymbolClass = this.props.type === 'litter' ? 'spotted-litter' : 'spotted-nature'
+    this.setState({
+      symbolClass: addSymbolClass
+    })
   }
 
   render() {
@@ -16,11 +33,15 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const iconCategory = this.props.type
+    const icon = ItemIcons[iconCategory];
 
+    const classes = `game-item ${this.state.symbolClass}`
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      // THIS IS INLINE STYLING...WHATTTT
+      <div className={classes} style={itemStyle} onClick = {() => {this.addSymbols(); this.props.updateScoreCallback(this.props)}}>
+        <img 
+         src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }

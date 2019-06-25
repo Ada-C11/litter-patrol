@@ -30,8 +30,8 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    //const testItem = this.spawnItem(Date.now());
-    //this.state.items.push(testItem);
+    // const testItem = this.spawnItem(Date.now());
+    // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -39,8 +39,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in!
+  updateScore = (GameItem) => {
+    if (GameItem.type === 'litter') {
+      const newPoints = this.state.points + 1
+      this.setState({points: newPoints})
+    }
   }
 
   render() {
@@ -49,10 +52,14 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
+               type = {item.type}
 
                // Additional props (event callbacks, etc.) can be passed here
+               updateScoreCallback = {this.updateScore} 
              />;
     });
+
+    // console.log(event)
 
     return (
       <div className="game">
@@ -64,6 +71,7 @@ class App extends Component {
         <section className="level">
           { this.levelBackground() }
           { items }
+          
         </section>
 
       </div>
@@ -115,6 +123,7 @@ class App extends Component {
     const id = uuid();
     const type = this.randomType();
 
+    // movement stuff 
     const expiration = time + this.config.itemLifetime;
     const height = Math.random() * this.config.spawnHeight + this.config.spawnFloor;
 
